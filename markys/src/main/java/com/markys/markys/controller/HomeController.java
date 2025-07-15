@@ -2,6 +2,7 @@ package com.markys.markys.controller;
 
 import com.markys.markys.model.Platillo;
 import com.markys.markys.model.Usuario;
+import com.markys.markys.repository.PlatilloRepository;
 import com.markys.markys.repository.RolRepository;
 import com.markys.markys.repository.UsuarioRepository;
 import com.markys.markys.model.EstadoUsuario;
@@ -9,6 +10,7 @@ import com.markys.markys.service.RegistroService;
 import com.markys.markys.service.ServicioPlatillo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -135,5 +137,20 @@ public class HomeController {
     @GetMapping("/pending")
     public String pagoPendiente() {
         return "pending";
+    }
+
+    //Probar si devuelve datos de la DB en JSON
+    @RestController
+    @RequestMapping("/test-db")
+    public class TestController {
+
+        @Autowired
+        private PlatilloRepository productoRepository;
+
+        @GetMapping
+        public ResponseEntity<?> verificarConexion() {
+            List<Platillo> productos = productoRepository.findAll();
+            return ResponseEntity.ok(productos);
+        }
     }
 }
