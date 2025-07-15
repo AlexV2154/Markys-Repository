@@ -8,6 +8,12 @@ services:
     repo: https://github.com/OskitarBB/Markys-Repository.git
     branch: main
     envVars:
+      - - key: DATABASE_URL
+      - value: "jdbc:mysql://sql.freedb.tech:3306/freedb_markys3?useSSL=false&serverTimezone=UTC"
+      - key: DB_USERNAME
+      - value: "freedb_markysuser"
+      - key: DB_PASSWORD
+      - value: "Y9wQ$nTbbh4#2B%"
       - key: mp.access.token
         value: "APP_USR-6246925132439479-062001-5f12cdc1c38747034ed29c6ef1a49f1f-2509538210"
       - key: mp.public.key
